@@ -2,23 +2,32 @@ import React from 'react';
 import logo from './logo.svg';
 import './App.css';
 
+import { BrowserRouter as Router, NavLink, Route, Switch } from 'react-router-dom';
+import HomeComponent from './home/home.component';
+import ListMangaComponent from './manga/listManga.component';
+import EditManga from './manga/editManga.component';
+
 function App() {
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+
+
+      <Router>
+      <NavLink  activeStyle={{
+    fontWeight: "bold",
+    color: "red"
+  }} to="/" exact>HOME</NavLink>
+    <NavLink to="/mangas" exact>Mangas</NavLink>
+    <NavLink to="/mangas/create" exact>Ajout manga</NavLink>
+
+        <Switch>
+      <Route  path='/'exact component={HomeComponent}/>
+      <Route  path='/mangas'exact component={ListMangaComponent}/>
+      <Route  path='/mangas/create'exact component={EditManga}/>
+
+
+      </Switch>
+      </Router>
     </div>
   );
 }
